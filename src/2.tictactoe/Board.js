@@ -3,15 +3,15 @@ import {useState} from 'react'
 
 export default function Board() {
     const [squares, setSquares] = useState(Array(9).fill(null))
-    const [xIsNext, setXIsNext] = useState(true)
+    const [xIsNext, setXIsNext] = useState(true)  
 
-    function handleClick(i) {
-        if(squares[i] || isWinner(squares)) return
-
+    function handleClick(i) {       
+        if(pickWinner(squares) || squares[i]) return
+        
         const nextSquares = squares.slice()
         xIsNext ? nextSquares[i] = 'X' : nextSquares[i] = 'O'        
         setSquares(nextSquares)
-        setXIsNext(!xIsNext)
+        setXIsNext(!xIsNext)        
     }
 
     return (
@@ -30,12 +30,12 @@ export default function Board() {
                 <Square value={squares[6]} onClick={() => handleClick(6)}/>
                 <Square value={squares[7]} onClick={() => handleClick(7)}/>
                 <Square value={squares[8]} onClick={() => handleClick(8)}/>
-            </div>
+            </div>          
         </>
     )
 }
 
-function isWinner(squares) {
+function pickWinner(squares, setStatus) {
     const lines = [
         [0, 1, 2],
         [3, 4, 5],
@@ -46,20 +46,12 @@ function isWinner(squares) {
         [0, 4, 8],
         [2, 4, 6]
     ]
-/*
+
+    let winner
     for(let i = 0; i < lines.length; i++) {        
         const [a, b, c] = lines[i]
-        console.log(a, b, c)
+        if(squares[a] && squares[a] === squares[b] && squares[a] === squares[c])
+            winner = squares[a]
     }
-*/
-
-    for(let i = 0; i < lines.length; i++) {
-        console.log(i)
-        const [a, b, c] = lines[i]
-        let val = squares[a] && squares[a]===squares[b] && squares[a]===squares[c]
-        console.log(a, b, c)
-        console.log(val)
-        return val
-    }
-  
+    return winner 
 }
