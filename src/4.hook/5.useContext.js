@@ -1,9 +1,28 @@
-import {createContext, useContext} from 'react'
+import {createContext, useContext, useState} from 'react'
+import './5.style.css'
 
-export default function App() {
+const ThemeContext = createContext(null)
+/*
+export default function Welcome() {
     return (
         <ThemeContext.Provider value='dark'>
-            <From/>
+            <Form/> 
+        </ThemeContext.Provider>
+    )
+}
+*/
+export default function Welcome() {
+    const [theme, setTheme] = useState('light')
+
+    return (
+        <ThemeContext.Provider value={theme}> 
+            <Form/>
+            <label>
+                <input type='checkbox'
+                    checked={theme === 'dark'}
+                    onChange={e => setTheme(e.target.checked ? 'dark' : 'light')}/>
+                use dark mode
+            </label>
         </ThemeContext.Provider>
     )
 }
@@ -31,4 +50,9 @@ function Panel({title, children}) {
 function Button({children}) {
     const theme = useContext(ThemeContext)
     const className = 'button-' + theme
+    return (
+        <button className={className}>
+            {children}
+        </button>
+    )
 }
