@@ -1,11 +1,30 @@
 import './5.style3.css'
 import {createContext, useContext, useState} from 'react'
 
-const ThemeContext = createContext(null)
+const ThemeContext = createContext('dark')
 const CurrentUserContext = createContext(null)
 
 export default function Welcome() {
     const [theme, setTheme] = useState('light')
+
+    return (
+        <>
+            <MyProviders theme={theme}>
+                <WelcomePanel/>
+                <label>
+                    <input
+                        type='checkbox'
+                        checked={theme === 'dark'}
+                        onChange={e => setTheme(e.target.checked ? 'dark' : 'light')}/>
+                        use dark mode
+                </label>            
+            </MyProviders>
+            <Button>button</Button>
+        </>
+    )
+}
+
+function MyProviders({theme, children}) {
     const [currentUser, setCurrentUser] = useState(null)
 
     return (
@@ -15,14 +34,7 @@ export default function Welcome() {
                     currentUser,
                     setCurrentUser
                 }}>
-                <WelcomePanel/>
-                <label>
-                    <input
-                        type='checkbox'
-                        checked={theme === 'dark'}
-                        onChange={e => setTheme(e.target.checked ? 'dark' : 'light')}/>
-                        use dark mode
-                </label>
+                {children}
             </CurrentUserContext.Provider>
         </ThemeContext.Provider>
     )
@@ -69,7 +81,7 @@ function LoginForm() {
                 <input
                     required
                     value={firstName}
-                    onChange={e => setFirstName(e.target.value)}/>                
+                    onChange={e => setFirstName(e.target.value)}/>
             </label>
             <label>
                 last name{': '}
@@ -85,11 +97,12 @@ function LoginForm() {
                 })}>
                 log in
             </Button>
+            {!isVal && <i>fill in both fields.</i>}
         </>
     )
 }
 
-function Button({children, disabled, onClick}) {
+function Button({disabled, onClick, children}) {
     const theme = useContext(ThemeContext)
     const className = 'button-' + theme
 
