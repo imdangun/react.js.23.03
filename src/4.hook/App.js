@@ -8,7 +8,8 @@
 //5. import Welcome from './5.useContext3'
 //5. import Welcome from './5.useContext4'
 //6. import MyReducer from './6.useReducer'
-import MyReducer from './6.useReducer2'
+//6. import MyReducer from './6.useReducer2'
+import MyReducer from './6.useReducer3'
 
 export default function App() {
     return (

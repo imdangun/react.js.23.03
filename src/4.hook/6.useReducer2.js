@@ -32,7 +32,7 @@ function reducer(user, action) {
     switch(action.type) {
         case 'plusAge' : man = {
             username: user.username,
-            age: user.age
+            age: user.age + 1
         }; break
         case 'fixUsername': man = {
             username: action.nextUsername,
