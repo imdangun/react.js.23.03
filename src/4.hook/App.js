@@ -9,13 +9,22 @@
 //5. import Welcome from './5.useContext4'
 //6. import MyReducer from './6.useReducer'
 //6. import MyReducer from './6.useReducer2'
-import MyReducer from './6.useReducer3'
+//6. import MyReducer from './6.useReducer3'
+//7. import MyRef from './7.useRef'
+//7. import MyRef from './7.useRef2'
+//7. import MyRef from './7.useRef3'
+//7. import MyRef from './7.useRef4'
+//7. import MyRef from './7.useRef5'
+//7. import MyRef from './7.useRef6'
+import Main from './8.useEffect/1.Chat'
 
 export default function App() {
     return (
         //1. <House/>
         //2.3.4. <Factory/>
         //5. <Welcome/>
-        <MyReducer/>
+        //6. <MyReducer/>
+        //7. <MyRef/>
+        <Main/>
     )
 }
