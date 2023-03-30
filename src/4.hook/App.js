@@ -16,7 +16,11 @@
 //7. import MyRef from './7.useRef4'
 //7. import MyRef from './7.useRef5'
 //7. import MyRef from './7.useRef6'
-import Main from './8.useEffect/1.Chat'
+//8. import Main from './8.useEffect/1.Chat'
+//8. import Main from './8.useEffect/2.Pointer'
+//8. import Main from './8.useEffect/3.Modal'
+//8. import Main from './8.useEffect/4.Fetch'
+import Main from './9.useLayoutEffect/1.Tooltip.js'
 
 export default function App() {
     return (
