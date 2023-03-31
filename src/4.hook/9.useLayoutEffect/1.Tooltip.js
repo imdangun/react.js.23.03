@@ -10,19 +10,20 @@ function TooltipContainer({children, x, y, contentRef}) {
             top: 0,
             transform: `translate(${x}px, ${y}px)`
         }}>
-            <div ref={contentRef} style={{
-                color: 'white',
-                background: '#222',
-                borderRadius: '.25rem',
-                padding: '.25rem'
-            }}>
+            <div ref={contentRef} 
+                style={{
+                    color: 'white',
+                    background: '#222',
+                    borderRadius: '.25rem',
+                    padding: '.25rem'
+                }}>
                 {children}
             </div>
         </div>       
     )
 }
 
-function Tooltip({children, targetRect}) {
+function Tooltip({targetRect, children}) {
     const ref = useRef(null)
     const [tooltipHeight, setTooltipHeight] = useState(0)
 
@@ -34,7 +35,7 @@ function Tooltip({children, targetRect}) {
 
     let tooltipX = 0
     let tooltipY = 0
-    if(targetRect !== null) {
+    if(targetRect) {
         tooltipX = targetRect.left
         tooltipY = targetRect.top - tooltipHeight
         if(tooltipY < 0) tooltipY = targetRect.bottom
